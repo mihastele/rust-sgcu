@@ -37,6 +37,10 @@ fn print_account_ret(account: Account) -> Account {
     account
 }
 
+fn add_cash_with_mutable_ref(account: &mut Account, cash: i32) {
+    account.balance += cash;
+}
+
 fn main() {
     let bank = Bank::new();
     let account = Account::new(1, String::from("Alice"));
@@ -53,4 +57,10 @@ fn main() {
 
     let account = print_account_ret(account);
     let account = print_account_ret(account);
+
+
+
+    let mut accountmut = Account::new(2, String::from("Bob"));
+    add_cash_with_mutable_ref(&mut accountmut, 100);
+    print_account(&accountmut);
 }
