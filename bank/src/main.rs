@@ -20,6 +20,10 @@ impl Bank {
     fn new() -> Self {
         Self { accounts: Vec::new() }
     }
+
+    fn add_account(&mut self, account: Account) {
+        self.accounts.push(account);
+    }
 }
 
 fn print_account(account: &Account) {
@@ -62,5 +66,6 @@ fn main() {
 
     let mut accountmut = Account::new(2, String::from("Bob"));
     add_cash_with_mutable_ref(&mut accountmut, 100);
+    accountmut.balance = 300;
     print_account(&accountmut);
 }
