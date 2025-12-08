@@ -9,6 +9,21 @@ impl Account {
     fn new(id: u32, holder: String) -> Self {
         Self { id, holder, balance: 0 }
     }
+
+    fn deposit(&mut self, cash: i32) -> Result<i32, String> {
+        self.balance += cash;
+        Ok((self.balance))
+    }
+
+    fn withdraw(&mut self, cash: i32) -> Result<i32, String> {
+        if self.balance >= cash {
+            self.balance -= cash;
+            Ok((self.balance))
+        }
+        else {
+            Err(String::from("Insufficient Funds"))
+        }
+    }
 }
 
 #[derive(Debug)]
