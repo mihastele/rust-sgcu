@@ -29,9 +29,9 @@ fn print_media(media: Media) {
 
 fn main() {
     let audiobook = Media::Audiobook { title: String::from("Rust Programming") };
-    let good_movie = Media::Movie { title: String::from("How to be an idiot"), director: String::from("Tobak Stuzzin") };
-    let bad_book = Media::Book { title: String::from("How to be retarded"), author: String::from("Luka Tashler") };
-    print_media(audiobook);
-    print_media(good_movie);
-    print_media(bad_book);
+    let good_movie = Media::Movie { title: String::from("How to be an idiot"), director: String::from("Tobak S.") };
+    let bad_book = Media::Book { title: String::from("How to be retarded"), author: String::from("Looka T.") };
+    println!("{}", audiobook.description());
+    println!("{}", good_movie.description());
+    println!("{}", bad_book.description());
 }
