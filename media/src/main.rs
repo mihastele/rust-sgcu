@@ -143,4 +143,7 @@ fn main() {
     //
     // println!("{:?}", evenCat);
     // println!("{:?}", catalog);
+
+
+    println!("{:#?}", catalog.items.get(10000).unwrap_or(&Media::Placeholder));
 }
