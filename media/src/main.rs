@@ -1,8 +1,26 @@
+use crate::Media::Audiobook;
+
 #[derive(Debug)]
 enum Media {
     Book { title: String, author: String },
     Movie { title: String, director: String },
     Audiobook { title: String },
+}
+
+impl Media {
+    fn description(&self) -> String {
+        // option 1 (Not usual)
+        if let Media::Book { title, author } = self {
+            format!("Book: {} {}", title, author)
+        } else if let Media::Movie { title, director } = self {
+            format!("Movie {} {}", title, director)
+        } else if let Media::Audiobook { title } = self {
+            format!("Audiobook {}", title)
+        } else {
+            String::from("Media description:")
+        }
+        // option 2
+    }
 }
 
 fn print_media(media: Media) {
