@@ -106,4 +106,18 @@ fn main() {
             println!("No media");
         }
     }
+
+    if let MightHaveAValue::ThereIsAValue(value) = catalog.get_by_index(0) {
+        println!("GG {:#?}", value);
+    }
+    else {
+        println!("No media");
+    }
+
+    if let MightHaveAValue::ThereIsAValue(value) = catalog.get_by_index(550) {
+        println!("GG {:#?}", value);
+    }
+    else {
+        println!("Game over");
+    }
 }
