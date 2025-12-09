@@ -24,6 +24,9 @@ impl Account {
             Err(String::from("Insufficient Funds"))
         }
     }
+    fn summary(&self) -> String {
+        format!("Account No: {} Holder: {} Balance: {}", self.id, self.holder, self.balance)
+    }
 }
 
 #[derive(Debug)]
@@ -38,6 +41,14 @@ impl Bank {
 
     fn add_account(&mut self, account: Account) {
         self.accounts.push(account);
+    }
+
+    fn total_balance(&self) -> i32 {
+        self.accounts.iter().map(|acc| acc.balance).sum()
+    }
+
+    fn summary(&self) -> Vec<String> {
+        self.accounts.iter().map(|acc| acc.summary()).collect::<Vec<String>>()
     }
 }
 
@@ -61,7 +72,7 @@ fn add_cash_with_mutable_ref(account: &mut Account, cash: i32) {
 }
 
 fn main() {
-    let bank = Bank::new();
+    let mut bank = Bank::new();
     let account = Account::new(1, String::from("Alice"));
 
     // println!("{:#?}", bank);
@@ -83,4 +94,9 @@ fn main() {
     add_cash_with_mutable_ref(&mut accountmut, 100);
     accountmut.balance = 300;
     print_account(&accountmut);
+
+    bank.add_account(account);
+    bank.add_account(accountmut);
+
+    println!("{}", bank.summary().join("\n"));
 }
