@@ -1,6 +1,8 @@
+use std::future::pending;
 use crate::Media::{Audiobook, Book, Movie, Podcast, Placeholder};
 
 #[derive(Debug)]
+#[derive(Clone)]
 enum Media {
     Book { title: String, author: String },
     Movie { title: String, director: String },
@@ -120,4 +122,25 @@ fn main() {
     else {
         println!("Game over");
     }
+
+    // Ownership tests
+    // let mut evenCat = Catalog::new();
+    // let mut flip = true;
+    // for media in catalog.items{
+    //     if flip {
+    //         evenCat.add(media.clone());
+    //     }
+    //     flip = !flip;
+    // }
+    // for i in 0..catalog.items.len() {
+    //     if flip {
+    //         if let MightHaveAValue::ThereIsAValue(media) = catalog.get_by_index(i) {
+    //             evenCat.add(media.clone());
+    //         }
+    //     }
+    //     flip = !flip;
+    // }
+    //
+    // println!("{:?}", evenCat);
+    // println!("{:?}", catalog);
 }
