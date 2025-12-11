@@ -10,6 +10,10 @@ fn shorten_strings(elements: &mut [String]) {
     elements.iter_mut().for_each(|element| element.truncate(1));
 }
 
+fn to_uppercase(elements: &[String]) -> Vec<String> {
+    elements.iter().map(|element| element.to_uppercase()).collect()
+}
+
 fn main() {
     let mut colors = vec![
         String::from("red"),
@@ -20,6 +24,9 @@ fn main() {
     // print_elements(&colors);
 
     // shorten_strings(&mut colors);
-    shorten_strings(&mut colors[1..3]);
-    println!("{:#?}", colors);
+    // shorten_strings(&mut colors[1..3]);
+    // println!("{:#?}", colors);
+
+    let uppercased = to_uppercase(&colors);
+    println!("{:#?}", uppercased);
 }
