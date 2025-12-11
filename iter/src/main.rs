@@ -1,4 +1,5 @@
-fn print_elements(elements: &Vec<String>) {
+/* &[String] vector slice of strings */
+fn print_elements(elements: &[String]) {
     // for element in elements {
     //     println!("{}", element);
     // }
