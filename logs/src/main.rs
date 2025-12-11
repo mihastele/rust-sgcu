@@ -28,18 +28,22 @@ fn main() {
     //     Err(what_went_wrong) => println!("Error: {}", what_went_wrong),
     // }
 
-    match fs::read_to_string("logs.txt") {
-        Ok(contents) => {
-            let error_logs = extract_errors(contents.as_str());
-            println!("{:#?}", error_logs);
+    // match fs::read_to_string("logs.txt") {
+    //     Ok(contents) => {
+    //         let error_logs = extract_errors(contents.as_str());
+    //         println!("{:#?}", error_logs);
+    //
+    //         match fs::write("errors.txt", error_logs.join("\n")) {
+    //             Ok(..) => println!("Errors written to file successfully."),
+    //             Err(why) => println!("Couldn't write to file: {}", why),
+    //         }
+    //     }
+    //     Err(why) => println!("Couldn't read file: {}", why)
+    // }
 
-            match fs::write("errors.txt", error_logs.join("\n")) {
-                Ok(..) => println!("Errors written to file successfully."),
-                Err(why) => println!("Couldn't write to file: {}", why),
-            }
-        }
-        Err(why) => println!("Couldn't read file: {}", why)
-    }
+    let text = fs::read_to_string("logs.txt").expect("Couldn't read file");
+    let error_logs = extract_errors(text.as_str());
+    fs::write("errors.txt", error_logs.join("\n")).expect("Couldn't write to file");
 }
 
 // fn validate_email(email: &str) -> Result<(), Error> {
