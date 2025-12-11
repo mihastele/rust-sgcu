@@ -6,13 +6,18 @@ fn print_elements(elements: &[String]) {
     elements.iter().for_each(|element| println!("{}", element));
 }
 
+fn shorten_strings(elements: &mut Vec<String>) {
+    elements.iter_mut().for_each(|element| element.truncate(1));
+}
 
 fn main() {
-    let colors = vec![
+    let mut colors = vec![
         String::from("red"),
         String::from("green"),
         String::from("blue"),
     ];
 
-    print_elements(&colors);
+    // print_elements(&colors);
+
+    shorten_strings(&mut colors);
 }
