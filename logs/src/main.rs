@@ -2,14 +2,14 @@ use std::fs;
 use std::io::Error;
 
 
-fn extract_errors(text: &str) -> Vec<String> {
+fn extract_errors(text: &str) -> Vec<&str> {
     let split_text = text.split("\n");
 
     let mut results = vec![];
 
     for line in split_text {
         if line.starts_with("ERROR") {
-            results.push(line.to_string());
+            results.push(line);
         }
     }
 
@@ -28,15 +28,18 @@ fn main() {
     //     Err(what_went_wrong) => println!("Error: {}", what_went_wrong),
     // }
 
-    let mut error_logs = vec![];
-
     match fs::read_to_string("logs.txt") {
         Ok(contents) => {
-            error_logs = extract_errors(contents.as_str());
+            let error_logs = extract_errors(contents.as_str());
+            println!("{:#?}", error_logs);
+
+            match fs::write("errors.txt", error_logs.join("\n")) {
+                Ok(..) => println!("Errors written to file successfully."),
+                Err(why) => println!("Couldn't write to file: {}", why),
+            }
         }
         Err(why) => println!("Couldn't read file: {}", why)
     }
-    println!("Found {} errors\n{:#?}", error_logs.len(), error_logs);
 }
 
 // fn validate_email(email: &str) -> Result<(), Error> {
