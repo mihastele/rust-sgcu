@@ -1,6 +1,22 @@
 use std::fs;
 use std::io::Error;
 
+
+fn extract_errors(text: &str) -> Vec<&str> {
+    let split_text = text.split("\n");
+
+    let mut results = vec![];
+
+    for line in split_text {
+        if line.starts_with("Error") {
+            results.push(line);
+        }
+    }
+
+    results
+}
+
+
 fn main() {
         // match divide(5.0, 3.0) {
     //     Ok(result) => println!("Result: {}", result),
