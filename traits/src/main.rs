@@ -14,4 +14,6 @@ fn main() {
     let s1 = Stack::new(
         vec![String::from("apple"), String::from("banana")]
     );
+    let s2 = Stack::new(vec![1, 2, 3]);
+    let mut s3 = Stack::new(vec![true, false]);
 }
