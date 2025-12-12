@@ -11,7 +11,11 @@ fn shorten_strings(elements: &mut [String]) {
 }
 
 fn to_uppercase(elements: &[String]) -> Vec<String> {
-    elements.iter().map(|element| element.to_uppercase()).collect()
+    elements.iter().map(|element| element.to_uppercase()).collect::<Vec<String>>()
+}
+
+fn move_elements(vec_a: Vec<String>, vec_b: &mut Vec<String>) {
+    vec_a.into_iter().for_each(|element| vec_b.push(element));
 }
 
 fn main() {
@@ -29,4 +33,8 @@ fn main() {
 
     let uppercased = to_uppercase(&colors);
     println!("{:#?}", uppercased);
+
+    let mut destination = vec![];
+    move_elements(colors, &mut destination);
+    println!("{:#?}", destination);
 }
